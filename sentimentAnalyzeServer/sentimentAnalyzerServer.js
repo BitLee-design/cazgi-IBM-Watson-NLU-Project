@@ -1,19 +1,19 @@
-const express = require('express');
+import express, { static } from 'express';
 const app = new express();
 
 /*This tells the server to use the client 
 folder for all static resources*/
-app.use(express.static('client'));
+app.use(static('client'));
 
 /*This tells the server to allow cross origin references*/
-const cors_app = require('cors');
+import cors_app from 'cors';
 app.use(cors_app());
 
 /*Uncomment the following lines to loan the environment 
 variables that you set up in the .env file*/
 
-const dotenv = require('dotenv');
-dotenv.config();
+import { config } from 'dotenv';
+config();
 
 const api_key = process.env.API_KEY;
 const api_url = process.env.API_URL;
@@ -37,7 +37,7 @@ function getNLUInstance() {
 
 
 //The default endpoint for the webserver
-app.get("/",(req,res)=>{
+app.get("/",(_req,res)=>{
     res.render('index.html');
   });
 
